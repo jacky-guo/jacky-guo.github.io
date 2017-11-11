@@ -28,8 +28,8 @@ Especially the section:
 ```
 deploy:
   type: git
-  repo: https://github.com/Kaijun/hexo-theme-huxblog
-  branch: gh-pages
+  repo: yourRepo SSH or HTTPS
+  branch: master
 ```
 Replace with your own repo!
 
@@ -41,5 +41,17 @@ hexo serve // run hexo in local environment
 hexo clean && hexo deploy // hexo will push the static files automatically into the specific branch(gh-pages) of your repo!
 ```
 
-##### 4.Enjoy! 
-Please [**Star**](https://github.com/kaijun/hexo-theme-huxblog/stargazers) this Project if you like it! [**Following**](https://github.com/Kaijun) would also be appreciated!
+##### 4.Change Log
+
+-  上傳github page 出現404問題 可以在source目录里加入.nojekyll文件，然后更改Hexo的_config.yml加入以下配置：
+```
+include:
+  - .nojekyll
+```
+这样在hexo -g的时候就会包含.nojekyll文件了
+
+## Ref
+[Document](https://github.com/Huxpro/huxpro.github.io)
+[GitPage部署Hexo NexT主题的CSS/JS错误](http://awhisper.github.io/2016/11/21/GitPage-Next%E7%9A%84CSS-JS%E9%94%99%E8%AF%AF/)
+[有关博客传到github css js 404的问题 解决方案](https://github.com/iissnan/hexo-theme-next/issues/1220)
+
