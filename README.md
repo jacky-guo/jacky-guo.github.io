@@ -48,7 +48,6 @@ hexo clean && hexo deploy // hexo will push the static files automatically into 
 include:
   - .nojekyll
 ```
-这样在hexo -g的时候就会包含.nojekyll文件了
 
 ## Ref
 [Document](https://github.com/Huxpro/huxpro.github.io)  
