@@ -43,7 +43,7 @@ hexo clean && hexo deploy // hexo will push the static files automatically into 
 
 ##### 4.Change Log
 
--  上傳github page 出現404問題 可以在source目录里加入.nojekyll文件，然后更改Hexo的_config.yml加入以下配置：
+-  當上傳github-page出現404問題時，可以在source目录里加入.nojekyll文件，然后更改Hexo的_config.yml加入以下配置，这样在hexo -g的时候就会包含.nojekyll文件了
 ```
 include:
   - .nojekyll
@@ -51,7 +51,7 @@ include:
 这样在hexo -g的时候就会包含.nojekyll文件了
 
 ## Ref
-[Document](https://github.com/Huxpro/huxpro.github.io)
-[GitPage部署Hexo NexT主题的CSS/JS错误](http://awhisper.github.io/2016/11/21/GitPage-Next%E7%9A%84CSS-JS%E9%94%99%E8%AF%AF/)
-[有关博客传到github css js 404的问题 解决方案](https://github.com/iissnan/hexo-theme-next/issues/1220)
+[Document](https://github.com/Huxpro/huxpro.github.io)  
+[GitPage部署Hexo NexT主题的CSS/JS错误](http://awhisper.github.io/2016/11/21/GitPage-Next%E7%9A%84CSS-JS%E9%94%99%E8%AF%AF/)  
+[有关博客传到github css js 404的问题 解决方案](https://github.com/iissnan/hexo-theme-next/issues/1220)  
 
