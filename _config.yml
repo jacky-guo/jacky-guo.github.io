@@ -4,7 +4,7 @@
 
 # Site
 title: Jacky's Blog
-subtitle: To Be A Better Man!
+subtitle: Talk is cheap. Show me the code.
 author: Jacky 
 language: en
 timezone: Asia/Taipei
@@ -57,7 +57,7 @@ ga_domain: auto
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: ""
+sidebar-about-description: "I am a master's student in National Taiwan University"
 sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
