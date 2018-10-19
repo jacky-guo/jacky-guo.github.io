@@ -13,11 +13,11 @@
 
     <title>
         
-          Nvidia-Docker環境設定&amp;中文編碼問題 - Jacky的博客 | Jacky&#39;s Blog
+          Datasets for Natural Language Processing - Jacky的博客 | Jacky&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://jacky-guo.github.io/2017/11/15/2017-11-15-Docker-Environment/">
+    <link rel="canonical" href="https://jacky-guo.github.io/2017/12/02/2017-12-2-NLP-dataset/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -165,18 +165,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Environment Setting" title="Environment Setting">Environment Setting</a>
-                        
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
-                        
-                          <a class="tag" href="/tags/#Ubuntu 16.04" title="Ubuntu 16.04">Ubuntu 16.04</a>
-                        
                     </div>
-                    <h1>Nvidia-Docker環境設定&amp;中文編碼問題</h1>
+                    <h1>Datasets for Natural Language Processing</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Jacky on
-                        2017-11-15
+                        2017-12-02
                     </span>
                 </div>
             </div>
@@ -195,19 +189,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="利用nvidia-docker-設置環境"><a href="#利用nvidia-docker-設置環境" class="headerlink" title="利用nvidia-docker 設置環境"></a>利用nvidia-docker 設置環境</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install -y build-essential git</span><br></pre></td></tr></table></figure>
-<p>安裝 nvidia-docker<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install nvidia-docker and nvidia-docker-plugin</span></span><br><span class="line">wget -P <span class="string">/tmp</span> https:<span class="string">//github.com/NVIDIA/nvidia-docker/releases/download/v1.0.1/nvidia-docker_1.0.1-1_amd64.deb</span></span><br><span class="line">sudo dpkg -i <span class="string">/tmp/nvidia-docker</span>*<span class="string">.deb</span> &amp;&amp; rm <span class="string">/tmp/nvidia-docker</span>*<span class="string">.deb</span></span><br></pre></td></tr></table></figure></p>
-<p>測試 nvidia-smi 验证是否安装成功<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nvidia-docker <span class="built_in">run</span> <span class="comment">--rm nvidia/cuda nvidia-smi</span></span><br></pre></td></tr></table></figure></p>
-<p>從 Tensorflow 的 Docker Hub 拉 Image<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nvidia-docker <span class="built_in">run</span> -d -p <span class="number">8889</span>:<span class="number">8888</span> <span class="comment">--name test2 -v /home/jacky/Downloads:/workspace tensorflow/tensorflow:latest-gpu</span></span><br><span class="line">sudo nvidia-docker exec -<span class="keyword">it</span> 容器<span class="built_in">name</span> bash 或者 sudo nvidia-docker exec -<span class="keyword">it</span> 容器ID</span><br></pre></td></tr></table></figure></p>
-<p><strong>-p 將外部的8889port對到內部的8888port</strong><br><strong>-v 將本機的Downloads文件夾掛載到Dockder的workspace</strong></p>
-<p>進入容器後 通過以下指令可以得到 jupyter notebook 的 token<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook <span class="built_in">list</span></span><br></pre></td></tr></table></figure></p>
-<p>用nvdia-docker替代docker命令<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> '<span class="keyword">alias</span> docker=nvidia-docker' &gt;&gt; ~<span class="string">/.bashrc</span></span><br><span class="line">bash</span><br></pre></td></tr></table></figure></p>
-<p>啟動、停止、刪除docker container<br><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo docker <span class="keyword">container</span> <span class="keyword">ls</span> -a                      <span class="comment">//查看所有容器狀態</span></span><br><span class="line">sudo docker ps 									 <span class="comment">//查看啟動的容器</span></span><br><span class="line">sudo docker <span class="keyword">container</span> start <span class="keyword">container</span>-name		 <span class="comment">//啟動</span></span><br><span class="line">sudo docker <span class="keyword">container</span> restart <span class="keyword">container</span>-name	 <span class="comment">//重新啟動</span></span><br><span class="line">sudo docker <span class="keyword">container</span> stop <span class="keyword">container</span>-name	 	 <span class="comment">//終止容器</span></span><br><span class="line">sudo docker <span class="keyword">container</span> rm <span class="keyword">container</span>-name         <span class="comment">//刪除容器 (需要先終止容器)</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="解決Docker容器中文亂碼問題"><a href="#解決Docker容器中文亂碼問題" class="headerlink" title="解決Docker容器中文亂碼問題"></a>解決Docker容器中文亂碼問題</h1><p>當出入如下問題時<br><img src="error-message.png" alt=""></p>
-<p>通過locale指令 可以發現 當前編碼格式為 POSIX<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">locale</span></span><br></pre></td></tr></table></figure></p>
-<p>解決方法：<br>step1: 安裝 locales<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-<span class="builtin-name">get</span> update</span><br><span class="line">apt-<span class="builtin-name">get</span> install -y locales</span><br></pre></td></tr></table></figure></p>
-<p>step2: change locale setting<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">locale-gen en_US.UTF-8</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">LANG</span>=en_US.UTF-8 <span class="attribute">LANGUAGE</span>=en_US.en <span class="attribute">LC_ALL</span>=en_US.UTF-8</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://wyde.github.io/2017/11/08/How-to-Install-Docker-CE-on-Ubuntu-16-04-and-Fedora-26/" target="_blank" rel="external">docker install 1</a><br><a href="https://wyde.github.io/2017/11/09/How-to-Install-Tensorflow-using-Docker-on-Ubuntu-16-04/" target="_blank" rel="external">docker install 2</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/" target="_blank" rel="external">docker gitbook</a><br><a href="https://webkul.com/blog/setup-locale-python3/" target="_blank" rel="external">Set the locale to UTF-8 for Python 3</a></p>
+                <p><a href="#Text-Classification">Text Classification</a><br><a href="#Language-Modeling">Language Modeling</a><br><a href="#Image-Captioning">Image Captioning</a><br><a href="#Machine-Translation">Machine Translation</a><br><a href="#Question-Answering">Question Answering</a><br><a href="#Speech-Recognition">Speech Recognition</a><br><a href="#Document-Summarization">Document Summarization</a></p>
+<h1 id="Text-Classification"><a href="#Text-Classification" class="headerlink" title="Text Classification"></a>Text Classification</h1><p>Reuters Newswire Topic Classification (Reuters-21578). A collection of news documents that appeared on Reuters in 1987 indexed by categories. Also see RCV1, RCV2 and TRC2.<br>IMDB Movie Review Sentiment Classification (stanford). A collection of movie reviews from the website imdb.com and their positive or negative sentiment.<br>News Group Movie Review Sentiment Classification (cornell). A collection of movie reviews from the website imdb.com and their positive or negative sentiment.</p>
+<h1 id="Language-Modeling"><a href="#Language-Modeling" class="headerlink" title="Language Modeling"></a>Language Modeling</h1><h1 id="Image-Captioning"><a href="#Image-Captioning" class="headerlink" title="Image Captioning"></a>Image Captioning</h1><h1 id="Machine-Translation"><a href="#Machine-Translation" class="headerlink" title="Machine Translation"></a>Machine Translation</h1><h1 id="Question-Answering"><a href="#Question-Answering" class="headerlink" title="Question Answering"></a>Question Answering</h1><h1 id="Speech-Recognition"><a href="#Speech-Recognition" class="headerlink" title="Speech Recognition"></a>Speech Recognition</h1><h1 id="Document-Summarization"><a href="#Document-Summarization" class="headerlink" title="Document Summarization"></a>Document Summarization</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://machinelearningmastery.com/datasets-natural-language-processing/" target="_blank" rel="external">Datasets for Natural Language Processing</a><br><a href="http://wdxtub.com/2017/02/15/bzs-ai-dataset/" target="_blank" rel="external">【不周山之数据科学】常用数据集</a></p>
 
 
                 <hr>
@@ -217,12 +201,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/11/26/2017-11-26-Ubuntu-Java/" data-toggle="tooltip" data-placement="top" title="Ubuntu 16.04 安裝Java & mysql & ipython">&larr; Previous Post</a>
+                            <a href="/2017/12/09/2017-12-9-GAN/" data-toggle="tooltip" data-placement="top" title="GAN implement">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/11/11/2017-11-11-AWS-Environment/" data-toggle="tooltip" data-placement="top" title="在AWS 2017年11月版的Spot Instance(競價實例)中建構tensorflow/keras環境">Next Post &rarr;</a>
+                            <a href="/2017/11/26/2017-11-26-Ubuntu-Java/" data-toggle="tooltip" data-placement="top" title="Ubuntu 16.04 安裝Java & mysql & ipython">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -249,12 +233,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Environment Setting" title="Environment Setting">Environment Setting</a>
-                        
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
-                        
-                          <a class="tag" href="/tags/#Ubuntu 16.04" title="Ubuntu 16.04">Ubuntu 16.04</a>
-                        
                     </div>
                 </section>
                 
